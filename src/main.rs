@@ -9,12 +9,11 @@ use panic_halt as _; // you can put a breakpoint on `rust_begin_unwind` to catch
 
 use cortex_m_rt::entry;
 use stm32l4::stm32l412;
+use cortex_m_semihosting::{debug, hprintln};
 
 #[entry]
 fn main() -> ! {
-    let mut peripherals = stm32l412::Peripherals::take().unwrap();
-    let gpioa = &peripherals.GPIOA;
-    gpioa.odr.modify(|_, w| w.odr0().set_bit());
+    hprintln!("Hello, world!").unwrap();
 
     loop {
         // your code goes here
